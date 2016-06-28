@@ -20,6 +20,8 @@ def partition(data_list, low_index, high_index):
 
 	## swap the pivot and last elments
 	data_list[high_index], data_list[StoreIndex] = data_list[StoreIndex], data_list[high_index]
+        print data_list[low_index:(StoreIndex - identi_count)]
+        print data_list[low_index:StoreIndex]
 
 	return (StoreIndex-identi_count)
 
@@ -47,8 +49,8 @@ def main(argv):
 	'''
 	
 	#input = open('input_data.txt', 'r')
-	#data = [1, 3, 4, 6, 2 ,2, 8, 4, 8, 10]
-	data = [1, 1 ,1, 1, 4, 5]
+	data = [1, 3, 4, 6, 2 ,2, 8, 4, 8, 10]
+	#data = [1, 1 ,1, 1, 4, 5]
 	quickSort(data, 0, len(data)-1)
 	print data
 
