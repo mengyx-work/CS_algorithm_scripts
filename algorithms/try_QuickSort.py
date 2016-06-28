@@ -1,7 +1,7 @@
 import sys
 
 def partition(data_list, low_index, high_index):
-	pivot_index = (low_index+int((high_index-low_index)/2))
+	pivot_index = (low_index + int((high_index - low_index)/2))
 	#pivot_index = low_index+1
 	pivot_value = data_list[pivot_index]
 	## swap the pivot and last elments
