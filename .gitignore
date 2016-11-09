@@ -4,3 +4,4 @@
 *.xlsx
 .DS_Store
 *.ipynb
+/leetcode/**/*.csv
