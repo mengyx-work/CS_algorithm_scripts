@@ -1,5 +1,35 @@
 import sys
 
+'''more specific on the boundaries: upperBound and lowerBound search
+'''
+
+def searchUpperBound(data, target):
+    if data is None or len(data) == 0:
+        return -1
+    ## inialize the lb and up to -1 and len(data)
+    lb, ub = -1, len(data)
+    while (lb + 1 < ub):
+        mid = lb + (ub - lb) / 2
+        if data[mid] > target:
+            ub = mid
+        else:
+            lb = mid
+    return ub - 1
+
+def searchLowerBound(data, target):
+    if data is None or len(data) == 0:
+        return -1
+    lb, ub = -1, len(data)
+    while lb + 1 < ub:
+        mid = lb + (ub - lb) / 2
+        if data[mid] < target:
+            lb = mid
+        else:
+            ub = mid
+    return lb + 1
+
+
+
 def binarySearch(data, target, start_point):
 	## contrain the final rearch to a list of small finite number of elements ##
 	num_limit = 4
@@ -43,7 +73,15 @@ def main(argv):
 	data = [1, 1, 4, 5, 6, 10, 12]
 	## assumed the data list is sorted ##
 	result = binarySearch(data, 14, 0)
-	print 'result: ', result
+	#print 'result: ', result
+        data = [1, 2, 2, 4, 5]
+        assert searchLowerBound(data, 2) == 1
+        assert searchUpperBound(data, 2) == 2
+
+        data = [1, 2, 2, 4, 5, 5, 5]
+        assert searchLowerBound(data, 5) == 4
+        assert searchUpperBound(data, 5) == 6
+
 
 if __name__ == "__main__":
     main(sys.argv)
