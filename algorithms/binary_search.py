@@ -30,6 +30,23 @@ def searchLowerBound(data, target):
 
 
 
+def binary_search(data, target):
+    if len(data) == 0:
+        return -1
+    start, end = 0, len(data) - 1
+    while (start + 1 < end):
+        mid = start + (end - start) / 2
+        if (data[mid] <= target):
+            start = mid
+        else:
+            end = mid
+
+    if data[start] == target:
+        return start
+    if data[end] == target:
+        return end
+
+'''
 def binarySearch(data, target, start_point):
 	## contrain the final rearch to a list of small finite number of elements ##
 	num_limit = 4
@@ -54,6 +71,7 @@ def binarySearch(data, target, start_point):
 	## original list. So the proper start_point needs to be passed along the 
 	## binary divisions. There are two indexes: local index to divide and the 
 	## global one.
+'''
 		
 
 
@@ -72,8 +90,9 @@ def main(argv):
 	#data = [1, 3, 4, 6, 2 ,2, 8, 4, 8, 10]
 	data = [1, 1, 4, 5, 6, 10, 12]
 	## assumed the data list is sorted ##
-	result = binarySearch(data, 14, 0)
-	#print 'result: ', result
+	result = binary_search(data, 6)
+        assert result == 4
+
         data = [1, 2, 2, 4, 5]
         assert searchLowerBound(data, 2) == 1
         assert searchUpperBound(data, 2) == 2
