@@ -12,7 +12,7 @@ def swap_elements(i, j, aList):
 def heapify(start, end, aList):
     '''
     function to heapify the element at 
-    start index as tree node based, with
+    start index as tree parent node, with
     end index limit
     there is a recursive call to heapify
     to make sure that swap does not change
