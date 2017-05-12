@@ -1,12 +1,8 @@
 class Solution:
-    # @param {integer} n
-    # @return {string}
     def CountSay(self, initStr):
-        
         Num = initStr[0]
         count = 1
         output = ""
-        
         for i in range(1, len(initStr)):
             if initStr[i]== Num:
                 count += 1
