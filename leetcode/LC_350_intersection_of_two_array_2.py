@@ -1,5 +1,9 @@
 class Solution(object):
     def intersect(self, nums1, nums2):
+
+'''
+class Solution(object):
+    def intersect(self, nums1, nums2):
         if len(nums1) < len(nums2):
             short_list = nums1
             long_list = nums2
@@ -14,6 +18,7 @@ class Solution(object):
                 long_list.remove(elem)
 
         return common_list
+'''
 
 
 
