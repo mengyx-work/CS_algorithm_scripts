@@ -1,5 +1,25 @@
 class Solution(object):
     def _find_pairs(self, nums, target):
+        result = []
+        lo, hi = 0, len(nums) - 1
+        while (lo <= hi):
+            while (lo < hi and nums[lo] == nums[lo+1]):
+                lo += 1
+            while (hi > lo and nums[lo] == nums[lo+1]):
+                hi -= 1
+            s = nums[lo] + nums[hi]
+            if s == target:
+                result.append([nums[lo], nums[hi]])
+                hi -= 1
+                lo += 1
+            if s > target:
+                hi -= 1
+            if s < target:
+                lo += 1
+        return result
+
+    '''
+    def _find_pairs(self, nums, target):
         lo, hi = 0, len(nums) - 1
         result = []
         while(lo <= hi):
@@ -16,9 +36,8 @@ class Solution(object):
                 hi -= 1
             if s < target:
                 lo += 1
-        #print 'target: ', target
-        #print 'found: ', result
         return result
+    '''
 
     def threeSum(self, nums, target):
         ''' summary of the solution:
@@ -32,7 +51,6 @@ class Solution(object):
         3. another function  `_find_pairs` tries to find pair of which
         the sum is target value, and lo<=hi conditoion includes the same element.
         to avoid duplicate when found match, the while loop is used
-        and special 
         '''
         nums.sort()
         results = []
@@ -52,16 +70,16 @@ sol = Solution()
 
 nums =  [2, 5, -1, -3, 6, 2, -3, 7, 7]
 nums.sort()
-print sol._find_pairs(nums, 4)
+assert sol._find_pairs(nums, 4) == [[-3, 7], [-1, 5], [2, 2]]
 nums =  [1, 1, 2]
 nums.sort()
-print sol._find_pairs(nums, 4)
+assert sol._find_pairs(nums, 4) == [[2, 2]]
 nums =  [1]
 nums.sort()
-print sol._find_pairs(nums, 2)
+assert sol._find_pairs(nums, 2) == [[1, 1]]
 
 nums =  [2, 5, -1, -3, 6, 2, -3, 7, 7]
-print sol.threeSum(nums, 0)
+assert sol.threeSum(nums, 0) == [[-3, -3, 6], [-1, -1, 2]]
 
 nums = [1, 2, -1, 1, -2, 4]
-print sol.threeSum(nums, 3)
+assert sol.threeSum(nums, 3) == [[-2, 1, 4], [-1, 2, 2], [1, 1, 1]]
