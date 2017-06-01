@@ -1,7 +1,4 @@
 class Solution:
-    # @param {integer[]} nums
-    # @return {integer[][]}
-
     '''
     def subsetsWithDup(self, S):
         res = [[]]
@@ -15,7 +12,6 @@ class Solution:
         return res
     '''
 
-    #'''
     def subsetsWithDup(self, nums):
         nums.sort()
         resList = []
@@ -35,8 +31,6 @@ class Solution:
             #print 'tmpList: ', tmpList, 'resList: ', resList
                 self.dfs(nums, i+1, tmpList, resList)
                 tmpList.pop()
-    #'''
-
 
     '''
     def subsetsWithoutDup(self, nums):    
