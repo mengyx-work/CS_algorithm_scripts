@@ -27,7 +27,6 @@ class Solution:
             output = self.CountSay(initStr)
             initStr = output
             #seqn += ", " + initStr
-
         #return seqn
         return initStr
 
