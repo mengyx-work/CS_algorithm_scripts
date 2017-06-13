@@ -38,9 +38,30 @@ class TreeNode(object):
                 parent_node.right = TreeNode(num)
         return root
 
+class Solution(object):
+    def levelOrder(self, root):
+        cur_nodes = []
+        if root is None:
+            return cur_nodes
+        cur_nodes.append(root)
+        results = []
+        while(len(cur_nodes) > 0):
+            result = []
+            tmp_nodes = []
+            for node in cur_nodes:
+                result.append(node.val)
+                if node.left is not None:
+                    tmp_nodes.append(node.left)
+                if node.right is not None:
+                    tmp_nodes.append(node.right)
+            cur_nodes = tmp_nodes[:]
+            results.append(result)
+        return results
+
 nums = [3, 9, 20, None, None, 15, 7]
 root = TreeNode.build_tree_from_array(nums)
-print root
+sol = Solution()
+print sol.levelOrder(root)
 '''
 root = TreeNode(1)
 root.left = TreeNode(2)
