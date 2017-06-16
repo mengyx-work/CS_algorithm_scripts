@@ -24,8 +24,6 @@ def Depth_First_Search(graph, start):
 			Visited.add(v)
 			for elem in graph[v]:
 				Stack.append(elem)
-
-
 	return Visited
 
 def Spec_Breath_First_Search(graph, start):

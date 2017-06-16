@@ -32,10 +32,11 @@ class TreeNode(object):
         for i, num in enumerate(nums[1:]):
             parent_index = (i + 2) // 2
             parent_node = cls._get_node_by_index(root, parent_index)
-            if i % 2 == 0:
+            if i % 2 == 0 and num is not None:
                 parent_node.left = cls(num)
-            else:
-                parent_node.right = TreeNode(num)
+                continue
+            if i % 2 == 1 and num is not None:
+                parent_node.right = cls(num)
         return root
 
 nums = [3, 9, 20, None, None, 15, 7]
