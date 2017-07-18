@@ -20,19 +20,17 @@ def build_linked_list(elem_list):
         cur = cur.next
     return head
 
-class Solution(object):
-    def reverseList(self, head):
-        cur, prev= head, None
-        while cur is not None:
-            tmp = cur.next
-            cur.next = prev
-            prev = cur
-            cur = tmp
-        return prev
+def reverseList(head):
+    cur, prev= head, None
+    while cur is not None:
+        tmp = cur.next
+        cur.next = prev
+        prev = cur
+        cur = tmp
+    return prev
 
 head = build_linked_list([1, 2, 3])
 print head
-sol = Solution()
-print sol.reverseList(head)
+print reverseList(head)
 
        
