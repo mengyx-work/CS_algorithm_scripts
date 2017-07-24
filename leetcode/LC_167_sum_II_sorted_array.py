@@ -1,4 +1,42 @@
 class Solution(object):
+    def _find_target(self, nums, target, start_index, end_index):
+        lb, ub = start_index, end_index
+        while lb +1 < ub:
+            mid = lb + (ub - lb) // 2
+            if nums[mid] < target:
+                lb = mid
+            else:
+                ub = mid
+        if nums[lb] == target:
+            return lb
+        elif nums[ub] == target:
+            return ub
+        else:
+            return None
+
+    def twoSum(self, numbers, target):
+        tot_len = len(numbers)
+        for i in range(tot_len - 1):
+            target_num = target - numbers[i]
+            found_idx = self._find_target(numbers, target_num, (i + 1), (tot_len - 1))
+            if found_idx is not None:
+                return [i+1, found_idx+1]
+            
+sol = Solution()
+nums = [1, 4, 6, 7, 10, 13, 15, 20]
+#print sol._find_target(nums, 9, 0, len(nums)-1)
+assert sol.twoSum(nums, 10) == [2, 3]
+nums = [10, 13]
+assert sol.twoSum(nums, 23)  == [1, 2]
+
+
+#nums = [0, 0, 1, 1, 2, 2, 4, 5, 5]
+#print sol.findMaxIdx(nums, 0, len(nums)-1, 1)
+#print sol.twoSum(nums, 20)
+
+#nums = [0, 0, 3, 4]
+
+'''
     def findMaxIdx(self, numbers, lower, upper, target):
         ## to handle the special case where multiple identicacl elements exsit
         idx = None
@@ -41,32 +79,10 @@ class Solution(object):
 
 
     def twoSum(self, numbers, target):
-        """
-        :type numbers: List[int]
-        :type target: int
-        :rtype: List[int]
-        """
         maxIdx = self.findMaxIdx(numbers, 0, len(numbers)-1, (target - numbers[0]))
         for i in range(maxIdx):
             tmpTarget = target - numbers[i]
             exptIdx = self.findNum(numbers, i, maxIdx, tmpTarget)
             if exptIdx is not None:
                 return [(i+1), (exptIdx+1)] 
-
-        
-
-sol = Solution()
-nums = [1, 4, 6, 7, 10, 13, 15, 20]
-#print sol.findNum(nums, 0, 7, 11)
-#print sol.findNum(nums, 0, 7, 12)
-#nums = [0, 0, 1, 1, 2, 2, 4, 5, 5]
-#print sol.findMaxIdx(nums, 0, len(nums)-1, 1)
-#print sol.twoSum(nums, 20)
-
-nums = [10, 13]
-#print sol.twoSum(nums, 23) 
-
-nums = [0, 0, 3, 4]
-print sol.twoSum(nums, 0) 
-
-        
+    '''
