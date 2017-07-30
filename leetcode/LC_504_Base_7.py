@@ -15,12 +15,14 @@ class Solution(object):
         return ''.join(digits)
 
     def convertToBase7(self, num):
-        if num == 0:
-            return '0'
+        if num < 7:
+            return str(num)
         elif num < 0:
-            return '-' + self._process(abs(num))
+            #return '-' + self._process(abs(num))
+            return '-' + self.convertToBase7(-num / 7) + str(-num % 7)
         else:
-            return self._process(num)
+            #return self._process(num)
+            return self.convertToBase7(num / 7) + str(num % 7)
 
 sol = Solution()
 assert sol.convertToBase7(100) == '202'
