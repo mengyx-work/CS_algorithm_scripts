@@ -1,10 +1,5 @@
 class Solution(object):
     def addStrings(self, num1, num2):
-        """
-        :type num1: str
-        :type num2: str
-        :rtype: str
-        """
 	num1 = list(num1)
         num2 = list(num2)
         if len(num1) > len(num2):
