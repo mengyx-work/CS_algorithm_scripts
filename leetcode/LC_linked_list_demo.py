@@ -29,8 +29,13 @@ def reverseList(head):
         cur = tmp
     return prev
 
-head = build_linked_list([1, 2, 3])
-print head
-print reverseList(head)
+def main():
+    head = build_linked_list([1, 2, 3])
+    print head
+    print reverseList(head)
+
+if __name__ == '__main__':
+    main()
+
 
        
