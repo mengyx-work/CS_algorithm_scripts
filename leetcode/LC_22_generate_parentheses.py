@@ -1,4 +1,5 @@
 class Solution(object):
+    '''
     def _count_left_parenthesis(self, s):
         total_count, extra_count = 0, 0
         chars = list(s)
@@ -27,6 +28,7 @@ class Solution(object):
                     tmp_candidates.append(tmp_candidate)
             candidates = tmp_candidates
         return candidates
+        '''
 sol = Solution()
 print sol.generateParenthesis(3)
                
