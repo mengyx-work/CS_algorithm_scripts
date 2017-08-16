@@ -6,6 +6,25 @@ class Solution(object):
 
     the list is sorted in the first place.
     '''
+    def combinationSum(self, candidates, target):
+        candidates.sort()
+        #return self.smart_combSum(candidates, target)
+        results = []
+        self._check_element(candidates, target, 0, [], results)
+        return results
+
+    def _check_element(self, candidates, target, start_idx, result, results):
+        for i in xrange(start_idx, len(candidates)):
+            cur_result = result[:]
+            cur_result.append(candidates[i])
+            if candidates[i] == target:
+                results.append(cur_result)
+                continue
+            if target > candidates[i]:
+                self._check_element(candidates, target-candidates[i], i, cur_result, results)
+
+
+    '''
     def smart_combSum(self, candidates, target):
         resList = []
         #print candidates
@@ -22,12 +41,8 @@ class Solution(object):
                 break
 
         return resList
+    '''
 
-    def combinationSum(self, candidates, target):
-        """
-        :type candidates: List[int]
-        :type target: int
-        :rtype: List[List[int]]
-        """
-        candidates.sort()
-        return self.smart_combSum(candidates, target)
+sol = Solution()
+nums = [2, 3, 6, 7]
+print sol.combinationSum(nums, 7)
