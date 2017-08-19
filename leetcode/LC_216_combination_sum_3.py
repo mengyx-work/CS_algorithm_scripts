@@ -6,7 +6,6 @@ class Solution(object):
                 return [[n]]
             else:
                 return []
-
         # requires recursive search
         else:
             final_result = []
