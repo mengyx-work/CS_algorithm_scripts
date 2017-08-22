@@ -1,6 +1,5 @@
 import math, heapq
 class Solution(object):
-    
     def findLowerBound(self, matrix, target):
         ''' helper function to find the 
         lowerBound value of any given target
@@ -19,7 +18,6 @@ class Solution(object):
                 cur_row += 1
         return lowBound
 
-
     def countByUpperBound(self, matrix, upperBound):
         '''count the number of element euqal or 
         smaller than the target value
@@ -32,7 +30,6 @@ class Solution(object):
                 j -= 1
             counter += j + 1
         return counter
-
 
     ## binary search on the value
     def kthSmallest(self, matrix, k):
@@ -47,9 +44,7 @@ class Solution(object):
                 lb = mid + 1
             else:
                 ub = mid
-
         return self.findLowerBound(matrix, lb)
-
 
     '''
     ## minHeap to store the top Kth elements
@@ -70,7 +65,6 @@ class Solution(object):
                 heapq.heappush(hq, (matrix[cur_row][cur_col], cur_row, cur_col))
             else:
                 continue
-
         elem = heapq.heappop(hq)
         return elem[0]
     '''
