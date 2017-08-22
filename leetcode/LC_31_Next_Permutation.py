@@ -1,5 +1,6 @@
 class Solution:
     def nextPermutation(self, nums):
+        ## idea: https://www.nayuki.io/page/next-lexicographical-permutation-algorithm
         pivot = None
         for i in xrange(len(nums)-1, 0, -1):
             if nums[i-1] < nums[i]:
