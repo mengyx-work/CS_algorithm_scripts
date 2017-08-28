@@ -141,25 +141,8 @@ assert sol.kthSmallest(matrix, k) == 5
         nums2 = [matrix[i][sqrtK] for i in range(sqrtK)]
         print nums1, nums2, sqrtK
         return self.findKthElement(k-sqrtK*sqrtK, nums1, nums2)
+'''
 
-    ## wrong solution
-    def kthSmallest(self, matrix, k):
-        """
-        :type matrix: List[List[int]]
-        :type k: int
-        :rtype: int
-        """
-        n = len(matrix)
-        if n == 1:
-            return matrix[0][0]
-        rowCount = k / n
-        colCount = k % n
-        #print rowCount, colCount
-        if colCount != 0:
-            return matrix[rowCount][colCount-1]
-        else:
-            return matrix[rowCount-1][n-1]
-    '''
 
 '''
 ## test the `findKthElement`
@@ -171,5 +154,3 @@ nums1 = [1, 2]
 nums2 = [3, 3]
 assert sol.findKthElement(3, nums1, nums2) == 3
 '''
-
-
