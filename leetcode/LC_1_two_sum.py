@@ -1,7 +1,4 @@
 class Solution:
-    # @param {integer[]} nums
-    # @param {integer} target
-    # @return {integer[]}
     def twoSum(self, nums, target):
         numsDict = {i:elem for i, elem in zip(range(len(nums)), nums)}
         indxList = sorted(numsDict.items(), key=lambda x: x[1])
@@ -18,8 +15,6 @@ class Solution:
 
             if (indxList[indx1][1] + indxList[indx2][1])<target:
                 indx1 += 1
-
-
 
 solut = Solution()
 data = [3, 2, 4]
