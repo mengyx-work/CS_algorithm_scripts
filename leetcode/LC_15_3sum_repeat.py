@@ -65,9 +65,7 @@ class Solution(object):
                     results.append([nums[i]] + pair)
         return results
 
-
 sol = Solution()
-
 nums =  [2, 5, -1, -3, 6, 2, -3, 7, 7]
 nums.sort()
 assert sol._find_pairs(nums, 4) == [[-3, 7], [-1, 5], [2, 2]]

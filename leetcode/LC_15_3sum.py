@@ -1,28 +1,22 @@
 class Solution:
-	# @param {integer[]} nums
-	# @return {integer[][]} 
 	def threeSum(self, nums):
 		postvDict = {}
 		negtvDict = {}
 		zeroCount = 0
 		sumList = set()
-
 		for elem in nums:
 			if elem>0:
 				if elem not in postvDict:
 					postvDict[elem] = 1
 				else:
 					postvDict[elem] += 1
-
 			elif elem<0:
 				if elem not in negtvDict:
 					negtvDict[elem] = 1
 				else:
 					negtvDict[elem] += 1
-	
 			else:
 				zeroCount += 1
-
 		for negElem in negtvDict:
 			## when zero exist
 			if -negElem in postvDict and zeroCount>0:
@@ -51,12 +45,10 @@ class Solution:
 						else:
 							sumList.add((negElem, -(posElem+negElem), posElem))
 
-
 		if zeroCount>2:
 			sumList.add((0, 0, 0))
 
 		return list(sumList)
-
 
 solut = Solution()
 
