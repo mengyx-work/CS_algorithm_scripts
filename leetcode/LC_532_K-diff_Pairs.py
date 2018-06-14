@@ -1,4 +1,28 @@
 class Solution(object):
+    def _find_k(self, nums, lo, hi, k):
+        while lo < hi:
+            mid = lo + (hi - lo) / 2
+            if nums[mid] == k:
+                return True
+            elif nums[mid] < k:
+                lo = mid + 1
+            else:
+                hi = mid
+        if nums[lo] == k:
+            return True
+        return False
+    
+    def findPairs(self, nums, k):
+        nums.sort()
+        counts = 0
+        for i in range(len(nums)-1):
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
+            if self._find_k(nums, i+1, len(nums)-1, nums[i]+k):
+                counts += 1
+        return counts
+
+class Solution(object):
     def findPairs(self, nums, k):
         num_dict = {}
         results = 0
