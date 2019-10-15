@@ -1,25 +1,42 @@
+
 from collections import defaultdict
+
 class Solution(object):
+    def _findDepth(self, curNode, prevNode, neighbors, curDepth):
+        if curNode not in neighbors:
+            return 0
+        if len(neighbors[curNode]) == 1 and neighbors[curNode][0] == prevNode:
+            return curDepth + 1
+        maxDepth = curDepth
+        for node in neighbors[curNode]:
+            if node == prevNode:
+                continue
+            maxDepth = max(maxDepth, self._findDepth(node, curNode, neighbors, curDepth+1))
+        return maxDepth
+
     def findMinHeightTrees(self, n, edges):
-        neighborDict = defaultdict(list)
+        neighbors, resDict = {}, {}
+        for i in range(n):
+            neighbors[i] = []
         for node1, node2 in edges:
-            neighborDict[node1].append(node2)
-            neighborDict[node2].append(node1)
-        len0Set, len1Set = set(), set()
-        print neighborDict
-        for i in xrange(n):
-            if len(neighborDict[i]) == 1:
-                len1Set.add(neighborDict[i][0])
-            if len(neighborDict[i]) == 0:
-                len1Set.add(i)
-        if len(len0Set) > 0:
-            return list(len0Set)
-        else:
-            return list(len1Set)
+            neighbors[node1].append(node2)
+            neighbors[node2].append(node1)
+
+        for i in range(n):
+            resDict[i] = self._findDepth(i, None, neighbors, 0)
+
+        minHeight = min(resDict.values())
+        # print 'minHeight:', minHeight
+        res = [root for root in range(n) if resDict[root] == minHeight]
+        return res
+
+
 sol = Solution()
-#assert sol.findMinHeightTrees(4, [[1, 0], [1, 2], [1, 3]]) ==[1]
-#assert sol.findMinHeightTrees(6, [[0, 3], [1, 3], [2, 3], [4, 3], [5, 4]]) == [3, 4]
-print sol.findMinHeightTrees(1, [])
+# print sol.findMinHeightTrees(4, [[1, 0], [1, 2], [1, 3]])
+assert sol.findMinHeightTrees(4, [[1, 0], [1, 2], [1, 3]]) ==[1]
+assert sol.findMinHeightTrees(6, [[0, 3], [1, 3], [2, 3], [4, 3], [5, 4]]) == [3, 4]
+assert sol.findMinHeightTrees(1, []) == [0]
+
 
 
 

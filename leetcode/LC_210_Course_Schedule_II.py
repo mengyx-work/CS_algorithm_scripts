@@ -1,30 +1,50 @@
 class Solution(object):
-    def findOrder(self, numCourses, prerequisites):
-        courseSeq = []
-        prereqCourse = {}
-        for pair in prerequisites:
-            if pair[0] not in prereqCourse:
-                prereqCourse[pair[0]] = {}
-            prereqCourse[pair[0]].add(pair[1])
-        for i in xrange(numCourses):
-            if i not in prereqCourse.keys():
-                courseSeq.append(i)
-        prev_course_count = 0
-        while len(courseSeq) > prev_course_count:
-            prev_course_count = len(courseSeq)
-            for key in prereqCourse.keys():
-                if reduce(lambda x, y: x and y, [elem in courseSeq for elem in prereqCourse[key]]):
-                    courseSeq.append(key)
-                    prereqCourse.pop(key)
-        if len(prereqCourse) == 0:
-            return courseSeq
+
+    def _dsf(self, currentCourse, sequence, dependentOnDict, states):
+        # print currentCourse, sequence, originalCourse
+        if currentCourse in sequence:
+            return 0
+
+        if states[currentCourse] == 1:
+            return -1
+
+        states[currentCourse] = 1
+        if currentCourse not in dependentOnDict:
+            sequence.append(currentCourse)
         else:
-            return []
+            for dependentCourse in dependentOnDict[currentCourse]:
+                sign = self._dsf(dependentCourse, sequence, dependentOnDict, states)
+                if sign == -1:
+                    return -1
+            sequence.append(currentCourse)
+        return 0
+
+    def findOrder(self, numCourses, prerequisites):
+        dependentOnDict, states = {}, {}
+
+        for prerequisite in prerequisites:
+            dependentCourse, startCourse = prerequisite
+            if dependentCourse not in dependentOnDict:
+                dependentOnDict[dependentCourse] = []
+            dependentOnDict[dependentCourse].append(startCourse)
+
+        for i in range(numCourses):
+            states[i] = 0
+
+        sequence = []
+        for course in range(numCourses):
+            sign = self._dsf(course, sequence, dependentOnDict, states)
+            if sign == -1:
+                return []
+        return sequence
+
 
 sol = Solution()
+# print sol.findOrder(2, [[1,0]])
 assert sol.findOrder(2, [[1,0]]) ==[0, 1]
-assert sol.findOrder(4, [[1,0],[2,0],[3,1],[3,2]]) == [0, 1, 2, 3]
+assert sol.findOrder(4, [[1,0], [2,0], [3,1], [3,2]]) == [0, 1, 2, 3]
 assert sol.findOrder(3, [[1,1]]) == []
+assert sol.findOrder(4, [[0,1], [3,1], [1,3], [3,2]]) == []
 
 
 

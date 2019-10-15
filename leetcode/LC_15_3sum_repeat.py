@@ -2,21 +2,42 @@ class Solution(object):
     def _find_pairs(self, nums, target):
         result = []
         lo, hi = 0, len(nums) - 1
-        while (lo <= hi):
-            while (lo < hi and nums[lo] == nums[lo+1]):
-                lo += 1
-            while (hi > lo and nums[lo] == nums[lo+1]):
-                hi -= 1
+        while (lo < hi):
             s = nums[lo] + nums[hi]
             if s == target:
                 result.append([nums[lo], nums[hi]])
-                hi -= 1
+                while lo < hi and nums[lo] == nums[lo + 1]:
+                    lo += 1
+                while (hi - 1) > lo and nums[hi] == nums[hi - 1]:
+                    hi -= 1
                 lo += 1
-            if s > target:
                 hi -= 1
-            if s < target:
+            elif s > target:
+                hi -= 1
+            elif s < target:
                 lo += 1
+
         return result
+
+    ### previously working
+    # def _find_pairs(self, nums, target):
+    #     result = []
+    #     lo, hi = 0, len(nums) - 1
+    #     while (lo <= hi):
+    #         while (lo < hi and nums[lo] == nums[lo+1]):
+    #             lo += 1
+    #         while (hi > lo and nums[lo] == nums[lo+1]):
+    #             hi -= 1
+    #         s = nums[lo] + nums[hi]
+    #         if s == target:
+    #             result.append([nums[lo], nums[hi]])
+    #             hi -= 1
+    #             lo += 1
+    #         if s > target:
+    #             hi -= 1
+    #         if s < target:
+    #             lo += 1
+    #     return result
 
     '''
     def _find_pairs(self, nums, target):
@@ -39,7 +60,7 @@ class Solution(object):
         return result
     '''
 
-    def threeSum(self, nums, target):
+    def threeSum(self, nums, target=0):
         ''' summary of the solution:
         1. the array may contain duplicate numbers, so a 
         check on the previous element is used to skip the
@@ -49,7 +70,7 @@ class Solution(object):
         since the element can be repeatedly considered as candidate,
         loop reaches the last element.
         3. another function  `_find_pairs` tries to find pair of which
-        the sum is target value, and lo<=hi conditoion includes the same element.
+        the sum is target value, and lo<=hi condition includes the same element.
         to avoid duplicate when found match, the while loop is used
         '''
         nums.sort()
@@ -59,25 +80,47 @@ class Solution(object):
             if i > 0 and nums[i] == nums[i-1]:
                 continue
             sum_target = target - nums[i]
-            found_pairs = self._find_pairs(nums[i:], sum_target)
+            found_pairs = self._find_pairs(nums[i+1:], sum_target)
+            if sum_target == 0:
+                print nums[i+1:], found_pairs
             if len(found_pairs) > 0:
                 for pair in found_pairs:
                     results.append([nums[i]] + pair)
         return results
 
 sol = Solution()
-nums =  [2, 5, -1, -3, 6, 2, -3, 7, 7]
-nums.sort()
-assert sol._find_pairs(nums, 4) == [[-3, 7], [-1, 5], [2, 2]]
-nums =  [1, 1, 2]
-nums.sort()
-assert sol._find_pairs(nums, 4) == [[2, 2]]
-nums =  [1]
-nums.sort()
-assert sol._find_pairs(nums, 2) == [[1, 1]]
 
-nums =  [2, 5, -1, -3, 6, 2, -3, 7, 7]
-assert sol.threeSum(nums, 0) == [[-3, -3, 6], [-1, -1, 2]]
+nums = [0, 0, 1, 1, 3, 4, 4]
+assert sol._find_pairs(nums, 0) == [[0, 0]]
 
-nums = [1, 2, -1, 1, -2, 4]
-assert sol.threeSum(nums, 3) == [[-2, 1, 4], [-1, 2, 2], [1, 1, 1]]
+nums = [-4,-2,1,-5,-4,-4,4,-2,0,4,0,-2,3,1,-5,0]
+print sol.threeSum(nums, 0)
+
+# nums = [-1,0,1,2,-1,-4]
+# assert sol.threeSum(nums, 0) == [[-1,-1,2],[-1,0,1]]
+#
+# nums = [0,0]
+# assert sol.threeSum(nums, 0) == []
+
+### allow sinle num to use multiple times
+
+# nums = [2, 5, -1, -3, 6, 2, -3, 7, 7]
+# assert sol.threeSum(nums, 0) == [[-3, -3, 6], [-1, -1, 2]]
+
+# nums = [2, 5, -1, -3, 6, 2, -3, 7, 7]
+# assert sol._find_pairs(nums, 4) == [[-3, 7], [-1, 5], [2, 2]]
+
+# nums = [1, 1, 2]
+# nums.sort()
+# assert sol._find_pairs(nums, 4) == [[2, 2]]
+
+# nums = [1]
+# nums.sort()
+# assert sol._find_pairs(nums, 2) == [[1, 1]]
+
+# nums = [1, 2, -1, 1, -2, 4]
+# assert sol.threeSum(nums, 3) == [[-2, 1, 4], [-1, 2, 2], [1, 1, 1]]
+
+
+
+

@@ -17,7 +17,7 @@ class Solution(object):
 
                 if min_value is None:
                     min_value = num
-                elif  min_value > num:
+                elif min_value > num:
                     min_value = num
 
                 if max_value is None:

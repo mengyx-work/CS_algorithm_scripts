@@ -1,5 +1,6 @@
 from collections import defaultdict
 from Queue import Queue
+
 class Solution(object):
     def canFinish(self, numCourses, prerequisites):
         preReqDict = defaultdict(set)
