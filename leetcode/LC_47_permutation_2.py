@@ -1,47 +1,37 @@
-class Solution:
-    def creatPermut(self, nums, curIndx, maxIndx, res):
-        #print 'the first nums: ', nums, 'curIndx: ', curIndx
-        if curIndx==maxIndx:
-            res.append(tuple(nums))
-            #res.append(nums)            
-            print 'the result: ', res
-            return
-		visited = {}
-		for i in range(curIndx, maxIndx):
-			if nums[i] in visited:
-				continue
-			else:
-				visited[visited] = 1	
-        		tmp1 = nums[curIndx]
-          		nums[curIndx] = nums[i]
-            	        nums[i] = tmp1
-            	        #print 'nums: ', nums 
- 			self.creatPermut(nums, (curIndx+1), maxIndx, res)
-            
-           		tmp1 = nums[curIndx]
-            	        nums[curIndx] = nums[i]
-            	        nums[i] = tmp1
-
-
-
-    # @param {integer[]} nums
-    # @return {integer[][]}
+class Solution(object):
     def permuteUnique(self, nums):
-        resList = []
-        self.creatPermut(nums, 0, len(nums), resList)
-        print 'the result to send: ', resList
-        tmpRes = [list(elem) for elem in resList]
-        return tmpRes
+        results = []
+        nums.sort()
+        self.permute_swap(results, 0, len(nums), nums)
+        return results
+
+    def permute_swap(self, results, idx, tot, curArr):
+        # print('idx: {}, curArr: {}'.format(idx, curArr))
+        if idx >= tot:
+            results.append(curArr[:])
+        tmpCurArr = curArr[:]
+        for i in range(idx, tot):
+            if i > 0 and tmpCurArr[i-1] == tmpCurArr[i]:
+                    continue
+            self.swap(tmpCurArr, idx, i)
+            self.permute_swap(results, idx+1, tot, tmpCurArr)
+            self.swap(tmpCurArr, i, idx)
+
+    def swap(self, arr, i, j):
+        tmp = arr[i]
+        arr[i] = arr[j]
+        arr[j] = tmp
+
 
 
 solut = Solution()
-#nums = []
-#nums = [1, 2]
-#nums = [4,1,0, 3]
-nums = [1, 1, 1, 3]
-#nums = [1, 1, 2, 2, 3]
-#nums = [3,3,0,0,2,3,2]
-#nums = [1, 1, 2, 2, 3]
-nums = [1, 2, 3]
+
+# nums = [1, 1, 1, 3]
+# nums = [2,2,1,1]
+nums = [0,1,0,0,9]
 res = solut.permuteUnique(nums)
-print 'the reults: ', res
+ref = [[0,0,0,1,9],[0,0,0,9,1],[0,0,1,0,9],[0,0,1,9,0],[0,0,9,0,1],[0,0,9,1,0],[0,1,0,0,9],[0,1,0,9,0],[0,1,9,0,0],[0,9,0,0,1],[0,9,0,1,0],[0,9,1,0,0],[1,0,0,0,9],[1,0,0,9,0],[1,0,9,0,0],[1,9,0,0,0],[9,0,0,0,1],[9,0,0,1,0],[9,0,1,0,0],[9,1,0,0,0]]
+print 'the ref: ', len(ref)
+
+## [[1,1,2,2],[1,2,1,2],[1,2,2,1],[2,1,1,2],[2,1,2,1],[2,2,1,1]]
+print 'the reults: ', len(res)

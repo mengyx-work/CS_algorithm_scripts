@@ -1,6 +1,6 @@
 class Solution(object):
     '''
-    Similar to the other combination sum problems, a recurive call
+    Similar to the other combination sum problems, a recursive call
     to the smart_combSum function is used to collect all the possible
     combinations.
 

@@ -1,43 +1,26 @@
-class Solution:
-    def creatPermut(self, nums, curIndx, maxIndx, res):
-        #print 'the first nums: ', nums, 'curIndx: ', curIndx
-        if curIndx==maxIndx:
-            res.append(tuple(nums))
-            #res.append(nums)            
-            print 'the result: ', res
-            return
+class Solution(object):
+    def permute(self, nums):
+        results = []
+        self.permute_swap(results, 0, len(nums), nums)
+        return results
 
-        for i in range(curIndx, maxIndx):
-            tmp1 = nums[curIndx]
-            nums[curIndx] = nums[i]
-            nums[i] = tmp1
-            #print 'nums: ', nums 
-            self.creatPermut(nums, (curIndx+1), maxIndx, res)
-            
-            tmp1 = nums[curIndx]
-            nums[curIndx] = nums[i]
-            nums[i] = tmp1
+    def permute_swap(self, results, idx, tot, curArr):
+        # print('idx: {}, curArr: {}'.format(idx, curArr))
+        if idx >= tot:
+            results.append(curArr[:])
+        tmpCurArr = curArr[:]
+        for i in range(idx, tot):
+            self.swap(tmpCurArr, idx, i)
+            self.permute_swap(results, idx+1, tot, tmpCurArr)
+            self.swap(tmpCurArr, i, idx)
 
-
-
-    # @param {integer[]} nums
-    # @return {integer[][]}
-    def permuteUnique(self, nums):
-        resList = []
-        self.creatPermut(nums, 0, len(nums), resList)
-        #print 'the result to send: ', resList
-        tmpRes = [list(elem) for elem in resList]
-        return tmpRes
+    def swap(self, arr, i, j):
+        tmp = arr[i]
+        arr[i] = arr[j]
+        arr[j] = tmp
 
 
 solut = Solution()
-#nums = []
-#nums = [1, 2]
-#nums = [4,1,0, 3]
-nums = [1, 1, 1, 3]
-#nums = [1, 1, 2, 2, 3]
-#nums = [3,3,0,0,2,3,2]
-nums = [1, 1, 2, 2, 3]
 nums = [1, 2, 3]
-res = solut.permuteUnique(nums)
+res = solut.permute(nums)
 print 'the reults: ', res

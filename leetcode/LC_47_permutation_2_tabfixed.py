@@ -22,10 +22,6 @@ class Solution:
                 nums[curIndx] = nums[i]
                 nums[i] = tmp1
 
-
-
-    # @param {integer[]} nums
-    # @return {integer[][]}
     def permuteUnique(self, nums):
         resList = []
         self.creatPermut(nums, 0, len(nums), resList)

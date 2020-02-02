@@ -1,34 +1,21 @@
 class Solution(object):
-    '''
-    def _count_left_parenthesis(self, s):
-        total_count, extra_count = 0, 0
-        chars = list(s)
-        for char in chars:
-            if char == '(':
-                total_count += 1
-                extra_count += 1
-            if char ==')':
-                extra_count -= 1
-        return total_count, extra_count
-
     def generateParenthesis(self, n):
-        candidates = ['(']
-        for i in range(2*n-1):
-            tmp_candidates = []
-            for candidate in candidates:
-                total_count, extra_count = self._count_left_parenthesis(candidate)
-                if extra_count > 0:
-                    if total_count < n:
-                        tmp_candidate = candidate + '('
-                        tmp_candidates.append(tmp_candidate)
-                    tmp_candidate = candidate + ')'
-                    tmp_candidates.append(tmp_candidate)
-                else: 
-                    tmp_candidate = candidate + '('
-                    tmp_candidates.append(tmp_candidate)
-            candidates = tmp_candidates
-        return candidates
-        '''
+        lefts, rights, opens = n, n, 0
+        results = []
+        queue = [("", lefts, rights, opens)]
+        while queue:
+            subS, lefts, rights, opens = queue.pop()
+            if lefts == 0 and rights == 0 and opens == 0:
+                results.append(subS)
+            else:
+                if lefts > 0:
+                    newS = subS + "("
+                    queue.append((newS, lefts-1, rights, opens+1))
+                if rights > 0 and opens > 0:
+                    newS = subS + ")"
+                    queue.append((newS, lefts, rights-1, opens-1))
+        return results
+
 sol = Solution()
 print sol.generateParenthesis(3)
                

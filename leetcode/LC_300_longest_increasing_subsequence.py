@@ -1,18 +1,35 @@
+
 class Solution(object):
     def lengthOfLIS(self, nums):
-        max_counts = []
         if len(nums) == 0:
             return 0
-        for i, num in enumerate(nums):
-            max_count = 1
-            for j in xrange(i-1, -1, -1):
-                if nums[j] < num:
-                    max_count = max(max_count, max_counts[j]+1)
-            max_counts.append(max_count)
-        return max(max_counts)
+        c, res = [], 1
+        for i in range(len(nums)):
+            m = 1
+            for j in range(0, i):
+                if nums[j] < nums[i] and c[j] >= m:
+                    m = c[j] + 1
+            c.append(m)
+            res = max(res, m)
+        return res
+
+
+# class Solution(object):
+#     def lengthOfLIS(self, nums):
+#         max_counts = []
+#         if len(nums) == 0:
+#             return 0
+#         for i, num in enumerate(nums):
+#             max_count = 1
+#             for j in xrange(i-1, -1, -1):
+#                 if nums[j] < num:
+#                     max_count = max(max_count, max_counts[j]+1)
+#             max_counts.append(max_count)
+#         return max(max_counts)
 
 sol = Solution()
 nums = [1,3,6,7,9,4,10,5,6]
+# print(sol.lengthOfLIS(nums))
 assert sol.lengthOfLIS(nums) == 6
 nums = [10, 9, 2, 5, 3, 7, 101, 18]
 assert sol.lengthOfLIS(nums) == 4
