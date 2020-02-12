@@ -1,4 +1,5 @@
 import collections
+
 class Solution(object):
     def characterReplacement(self, s, k):
         countDict = collections.defaultdict(int)

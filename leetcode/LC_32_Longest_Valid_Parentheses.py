@@ -10,7 +10,7 @@ class Solution(object):
                 if s[i-1] == '(':
                     dp[i] = dp[i-2] + 2
                 else:
-                    if i-1-dp[i-1] >= 0 and  s[i-1-dp[i-1]] == '(':
+                    if i-1-dp[i-1] >= 0 and s[i-1-dp[i-1]] == '(':
                         if i-1-dp[i-1]-1 >= 0:
                             dp[i] = dp[i-1] + 2 + dp[i-1-dp[i-1]-1]
                         else:

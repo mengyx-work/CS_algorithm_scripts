@@ -44,5 +44,7 @@ class Solution(object):
         return maxLen
 
 solut = Solution()
-data = 'qwnfenpglqdq'
-print solut.lengthOfLongestSubstring(data)
+s = "abcabcbb"
+print(solut.lengthOfLongestSubstring(s))
+# data = 'qwnfenpglqdq'
+# print solut.lengthOfLongestSubstring(data)

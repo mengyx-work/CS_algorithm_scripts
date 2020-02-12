@@ -1,8 +1,10 @@
 class Solution:
     def backtrack(self, results, tmpList, nums, idx):
+        print(idx, tmpList, results)
         curList = tmpList[:]
         results.append(curList)
         for i in range(idx, len(nums)):
+            print(idx, i, curList)
             curList.append(nums[i])
             self.backtrack(results, curList, nums, i+1)
             curList.pop()
