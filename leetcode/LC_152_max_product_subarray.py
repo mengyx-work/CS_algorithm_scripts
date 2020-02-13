@@ -1,41 +1,16 @@
-import sys
 class Solution(object):
     def maxProduct(self, nums):
-        final_max = -sys.maxint - 1
-        cur_pos_max_product = None
-        cur_neg_max_product = None
-        for elem in nums:
-            if elem > 0:
-                if cur_pos_max_product is None:
-                    cur_pos_max_product = elem
-                else:
-                    cur_pos_max_product *= elem
-                final_max = max(final_max, cur_pos_max_product, elem)
-                if cur_neg_max_product is not None:
-                    cur_neg_max_product *= elem
-            elif elem < 0:
-                if cur_neg_max_product is None:
-                    if cur_pos_max_product is None:
-                        cur_neg_max_product = elem
-                    else:
-                        cur_neg_max_product = min(elem*cur_pos_max_product, elem)
-                        cur_pos_max_product = None
-                    final_max = max(final_max, cur_neg_max_product, elem)
-                else:
-                    cur_pos_max_product_copy = cur_pos_max_product 
-                    cur_neg_max_product_copy = cur_neg_max_product
-                    if cur_pos_max_product_copy is not None:
-                        cur_neg_max_product = min(elem*cur_pos_max_product_copy, elem)
-                    else:
-                        cur_neg_max_product = elem
-                    cur_pos_max_product = elem*cur_neg_max_product_copy
-                    final_max = max(final_max, cur_pos_max_product)
-            else:
-                final_max = max(0, final_max)
-                cur_neg_max_product = None
-                cur_pos_max_product = None
-            #print elem, final_max, cur_pos_max_product, cur_neg_max_product
-        return final_max
+        if len(nums) == 0:
+            return None
+        res = nums[0]
+        cur_max, cur_min = nums[0], nums[0]
+        for num in nums[1:]:
+            prv_max, prv_min = cur_max, cur_min
+            cur_max = max([prv_max*num, prv_min*num, num])
+            cur_min = min([prv_max*num, prv_min*num, num])
+            res = max(res,cur_max)
+        return res
+
 
 sol = Solution()
 nums = [2,-5,-2,-4,3]

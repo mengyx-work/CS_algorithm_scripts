@@ -1,26 +1,33 @@
-import sys
+# import sys
+#
+# class Solution(object):
+#     def maximumProduct(self, nums):
+#         pos_max_1, pos_max_2, pos_max_3 = -sys.maxint, -sys.maxint, -sys.maxint
+#         neg_max_1, neg_max_2 = sys.maxint, sys.maxint
+#         for num in nums:
+#             if num > pos_max_1:
+#                 pos_max_3 = pos_max_2
+#                 pos_max_2= pos_max_1
+#                 pos_max_1 = num
+#             elif num > pos_max_2:
+#                 pos_max_3 = pos_max_2
+#                 pos_max_2 = num
+#             elif num > pos_max_3:
+#                 pos_max_3 = num
+#
+#             if num < neg_max_1:
+#                 neg_max_2 = neg_max_1
+#                 neg_max_1 = num
+#             elif num < neg_max_2:
+#                 neg_max_2 = num
+#         return max(neg_max_1 * neg_max_2 * pos_max_1, pos_max_1 * pos_max_2 * pos_max_3)
 
 class Solution(object):
     def maximumProduct(self, nums):
-        pos_max_1, pos_max_2, pos_max_3 = -sys.maxint, -sys.maxint, -sys.maxint
-        neg_max_1, neg_max_2 = sys.maxint, sys.maxint  
-        for num in nums:
-            if num > pos_max_1:
-                pos_max_3 = pos_max_2
-                pos_max_2= pos_max_1
-                pos_max_1 = num
-            elif num > pos_max_2:
-                pos_max_3 = pos_max_2
-                pos_max_2 = num
-            elif num > pos_max_3:
-                pos_max_3 = num
-
-            if num < neg_max_1:
-                neg_max_2 = neg_max_1
-                neg_max_1 = num
-            elif num < neg_max_2:
-                neg_max_2 = num
-        return max(neg_max_1 * neg_max_2 * pos_max_1, pos_max_1 * pos_max_2 * pos_max_3)
+        nums.sort()
+        res1 = nums[0]*nums[1]*nums[-1]
+        res2 = nums[-1]*nums[-2]*nums[-3]
+        return max(res1, res2)
 
 sol = Solution()
 nums = [1,0,100]

@@ -1,10 +1,5 @@
 class Solution(object):
     def wordPattern(self, pattern, str):
-        """
-        :type pattern: str
-        :type str: str
-        :rtype: bool
-        """
         patternDic = {}
         pattern = list(pattern)
         words = str.split(' ')
@@ -21,12 +16,9 @@ class Solution(object):
             else:
                 if patternDic[elem] != words[i]:
                     return False
-
         return True
 
 sol = Solution()
 print sol.wordPattern('abba', 'dog cat cat dog')
 print sol.wordPattern('abba', 'dog dog dog dog')
 print sol.wordPattern('abaa', 'dog cat cat dog')
-
-        
