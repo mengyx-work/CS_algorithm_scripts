@@ -36,10 +36,13 @@
 #                     cur_steps.append(candidate)
 #                     stacks.append((index+1, cur_steps))
 #         return False
+#
+# class Solution(object):
+#     def exist(self, board, word):
+#         return
 
 class Solution(object):
     def exist(self, board, word):
-        return
 
 
 sol = Solution()
