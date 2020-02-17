@@ -48,46 +48,6 @@ class Solution(object):
             ptr = ptr.next
         ptr.next = ptr1 if ptr2 is None else ptr2
         return dummy.next
-
-
-    '''
-    def mergeTwoLists(self, l1, l2):
-        ptr1, ptr2 = l1, l2
-        head = None
-        first = True
-        while ptr1 is not None or ptr2 is not None:
-            if ptr1 is None:
-                if first:
-                    ptr = ptr2
-                else:
-                    ptr.next = ptr2
-                ptr2 = ptr2.next
-            elif ptr2 is None:
-                if first:
-                    ptr = ptr1
-                else:
-                    ptr.next = ptr1
-                ptr1 = ptr1.next
-            else:
-                if ptr1.val < ptr2.val:
-                    if first:
-                        ptr = ptr1
-                    else:
-                        ptr.next = ptr1
-                    ptr1 = ptr1.next
-                else:
-                    if first:
-                        ptr = ptr2
-                    else:
-                        ptr.next = ptr2
-                    ptr2 = ptr2.next
-            if first:
-                head = ptr
-                first = False
-            else:
-                ptr = ptr.next
-        return head
-        '''
         
 head1 = build_linked_list([1, 3, 5])
 head2 = build_linked_list([2, 4])
