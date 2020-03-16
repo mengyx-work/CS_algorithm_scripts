@@ -4,7 +4,7 @@ class TreeNode(object):
         self.left = None
         self.right = None
 
-    def __eq__(self, other): 
+    def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
     def __repr__(self, level=0):

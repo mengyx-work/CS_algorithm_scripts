@@ -35,7 +35,16 @@ wrdDic = ["cat", "cats", "and", "sand", "dog"]
 s= 'catsanddog'
 print solut.wordBreak(s, wrdDic)
 
+s = "catsanddog"
+dic = ["cat", "cats", "and", "sand", "dog"]
+s = "aaaaaaa"
+dic = ["aaaa","aa","a"]
 
+#s= 'aa'
+#dic = ['aa', 'a']
+
+#s = "ab"
+#dic = ["a","b"]
 
 
 

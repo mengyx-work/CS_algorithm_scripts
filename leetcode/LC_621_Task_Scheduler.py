@@ -14,10 +14,14 @@ class Solution(object):
         return max(len(tasks), (counts[0][1] - 1) * (n + 1) + max_freq_count)
 
 
+
 sol = Solution()
-tasks = ['A','A','A','B','B','B']
-assert sol.leastInterval(tasks, 2) == 8
-tasks = ['A','A','A','B','B', 'C', 'C']
-assert sol.leastInterval(tasks, 2) == 7
+tasks = ["A","B","C","A","B"]
+assert sol.leastInterval(tasks, 2) == 5
+
+# tasks = ['A','A','A','B','B','B']
+# assert sol.leastInterval(tasks, 2) == 8
+# tasks = ['A','A','A','B','B', 'C', 'C']
+# assert sol.leastInterval(tasks, 2) == 7
 
 

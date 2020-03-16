@@ -1,7 +1,7 @@
 class Solution(object):
     def _find_max_len(self, s, start, end):
         while(start >= 0 and end < len(s) and s[start] == s[end]):
-            start  -= 1
+            start -= 1
             end += 1
         return s[start+1:end]
 

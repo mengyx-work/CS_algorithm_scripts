@@ -21,4 +21,14 @@ class Solution(object):
         """
         return self.search_first_bad(0, n)
 
-        
+
+class Solution(object):
+    def firstBadVersion(self, n):
+        l, r = 1, n
+        while l < r:
+            m = l + (r-l)/2
+            if isBadVersion(m):
+                r = m
+            else:
+                l = m + 1
+        return l

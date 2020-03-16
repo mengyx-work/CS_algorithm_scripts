@@ -1,9 +1,7 @@
 class Solution(object):
     def firstUniqChar(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
+        if len(s) == 0:
+            return -1
         sLst = []
         sDic = {}
         for i, chr in enumerate(s):
@@ -15,7 +13,9 @@ class Solution(object):
         for key in sLst:
             if sDic[key] != -1:
                 return sDic[key]
+        return -1
 
 sol = Solution()
 print sol.firstUniqChar('leetcode')
+print sol.firstUniqChar('cc')
 

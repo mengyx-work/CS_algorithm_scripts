@@ -28,6 +28,8 @@ class Solution(object):
         return ''.join(res)
 
 
+
+
 sol = Solution()
 S = "aaaaabbbcc"
 print(sol.reorganizeString(S))
