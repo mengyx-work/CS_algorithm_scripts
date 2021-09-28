@@ -1,3 +1,21 @@
+class Solution(object):
+    ## two pointers
+    def removeElement(self, nums, val):
+        l, r = 0, len(nums) - 1
+        while l < r:
+            while nums[l] != val and l < (len(nums) - 1):
+                l += 1
+            while nums[r] == val and 0 < r:
+                r -= 1
+            if l < r:
+                nums[l], nums[r] = nums[r], nums[l]
+                l += 1
+                r -= 1
+
+        while l < len(nums) and nums[l] != val:
+            l += 1
+        return l
+
 class Solution:
     # @param {integer[]} nums
     # @param {integer} val
